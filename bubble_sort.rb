@@ -1,4 +1,5 @@
-def bubble_sort(numbers)
+require "pry-byebug"
+def single_bubble(numbers)
     result = numbers.reduce([]) do |new_array, number|
         if new_array.any?
             prev_num = new_array.pop
@@ -14,7 +15,21 @@ def bubble_sort(numbers)
         end
         new_array
     end
-    result
+    num = result.pop
+    {result: result, new_num: num}
 end
 
-p bubble_sort([4, 5, 6, 3, 2, 7, 1])
+def bubble_sort(numbers)
+    new_array = []
+    bubble_result = {}
+    bubble_result[:result] = numbers
+    i = 0
+    while i < numbers.length
+        bubble_result = single_bubble(bubble_result[:result])
+        new_array = new_array.unshift(bubble_result[:new_num])
+        i += 1
+    end
+    new_array
+end 
+
+p bubble_sort([4, 5, 6, 12, 2, 7, 1, 40, 1, 2, 4, 5])
