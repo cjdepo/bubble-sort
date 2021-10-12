@@ -1,4 +1,3 @@
-require "pry-byebug"
 def single_bubble(numbers)
     result = numbers.reduce([]) do |new_array, number|
         if new_array.any?
